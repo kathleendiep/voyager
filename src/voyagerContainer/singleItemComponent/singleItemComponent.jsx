@@ -46,6 +46,7 @@ const SingleItemComponent = (props) => {
              <p><img className="image-voyager" src={props.voyager.img}></img></p>
              <h4>{props.voyager.location}</h4>
              <h4>{props.voyager.category}</h4>
+             <h4>description: {props.voyager.description}</h4>
              {/* ---------------- delete button ---------------- */}
              <button onClick={()=>{
                     // finds the id of item
