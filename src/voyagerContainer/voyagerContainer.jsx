@@ -24,7 +24,7 @@ const VoyagerContainer = () => {
         // make sure to put localhost:3001 - to the backend 
        
         // const apiResponse = await fetch("http://localhost:3001/voyagers/",{
-           const apiResponse = await fetch("https://voyager-back-end.herokuapp.com/",{
+           const apiResponse = await fetch("https://voyager-back-end.herokuapp.com/voyagers/",{
             method: "POST",
             mode: 'cors',
             // stringify the object newVoyager
@@ -55,7 +55,7 @@ const VoyagerContainer = () => {
     // 3. Child calls it 
     const deleteVoyager = async (idToDelete) => {
         // connect front end to the back end 
-        try{const apiResponse = fetch(`https://voyager-back-end.herokuapp.com/${idToDelete}`,{
+        try{const apiResponse = fetch(`https://voyager-back-end.herokuapp.com/voyagers/${idToDelete}`,{
             method: "DELETE"
         })
         const parsedResponse = await apiResponse.json()
@@ -80,7 +80,7 @@ const VoyagerContainer = () => {
     // UPDATE: put
     const updateVoyager = async (idToUpdate, voyagerToUpdate) => {
 
-        const apiResponse = await fetch(`https://voyager-back-end.herokuapp.com/${idToUpdate}`,{
+        const apiResponse = await fetch(`https://voyager-back-end.herokuapp.com/voyagers/${idToUpdate}`,{
             method: "PUT",
             body: JSON.stringify(voyagerToUpdate),
             headers: {
@@ -98,8 +98,8 @@ const VoyagerContainer = () => {
     // INDEX: GET function to setVoyagers
     const getVoyagers = async () => {
         try{
-            // const voyagers = await fetch("http://localhost:3001/voyagers/")
-            const voyagers = await fetch("https://voyager-back-end.herokuapp.com/")
+            // make sure to add this  https://voyager-back-end.herokuapp.com/voyagers
+            const voyagers = await fetch("https://voyager-back-end.herokuapp.com/voyagers/")
             const parsedVoyagers = await voyagers.json();
             setVoyagers(parsedVoyagers.data)
         }catch(err){
