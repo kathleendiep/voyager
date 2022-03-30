@@ -38,7 +38,6 @@ const SingleItemComponent = (props) => {
        console.log("updatingItem!")
    }
 
-
     return(
          <div className="single-item-component">
              <h3>items go here</h3>

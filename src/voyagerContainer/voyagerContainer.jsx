@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import { useEffect, useState}  from 'react'
 import './voyagerContainer.css'; 
 import SingleItemComponent from './singleItemComponent/singleItemComponent';
 import NewVoyagerComponent from './newVoyagerComponent/newVoyagerComponent';
@@ -7,22 +7,11 @@ import NewVoyagerComponent from './newVoyagerComponent/newVoyagerComponent';
 
 // 0. make the function
 const VoyagerContainer = () => {
-    const [voyagers, setVoyagers] = useState([{'_id':'1','name': 'Farmhouse','location': 'San Francisco', 'category': 'food', 'img':'https://img.cdn4dd.com/cdn-cgi/image/fit=cover,width=600,height=400,format=auto,quality=50/https://doordash-static.s3.amazonaws.com/media/store/header/109873.jpg', 'description': 'Thai Food with colorful spreads!'}]);
+    // {"name": "Farmhouse","location": "San Francisco", "category": "food", 'img':'https://img.cdn4dd.com/cdn-cgi/image/fit=cover,width=600,height=400,format=auto,quality=50/https://doordash-static.s3.amazonaws.com/media/store/header/109873.jpg', 'description': 'Thai Food with colorful spreads!'}
+    const [voyagers, setVoyagers] = useState([]);
      console.log(voyagers[0])
     const [newItemServerError, setNewItemsServerError] = useState("");
     const [requestError, setRequestError] = useState("")
-
-    // INDEX: GET function to setVoyagers
-    const getVoyagers = async () => {
-        try{
-            const voyagers = await fetch("http://localhost:3001/voyagers")
-            const parsedVoyagers = await voyagers.json();
-            setVoyagers(parsedVoyagers.data)
-        }catch(err){
-            console.log(err)
-            //TODO 
-        }
-    }
     //  Create: POST
     // newVoyager = defined in the child
     // but this createNewVoyager needs to be defined in the PARENT STATE 
@@ -33,8 +22,11 @@ const VoyagerContainer = () => {
 
         // POST method 
         // make sure to put localhost:3001 - to the backend 
-        const apiResponse = await fetch("http://localhost:3001/items",{
+       
+        // const apiResponse = await fetch("http://localhost:3001/voyagers/",{
+           const apiResponse = await fetch("https://voyager-back-end.herokuapp.com/",{
             method: "POST",
+            mode: 'cors',
             // stringify the object newVoyager
             body: JSON.stringify(newVoyager),
             // Boilerplate: its coming from json
@@ -63,7 +55,7 @@ const VoyagerContainer = () => {
     // 3. Child calls it 
     const deleteVoyager = async (idToDelete) => {
         // connect front end to the back end 
-        try{const apiResponse = fetch(`http://localhost:3001/voyagers/${idToDelete}`,{
+        try{const apiResponse = fetch(`https://voyager-back-end.herokuapp.com/${idToDelete}`,{
             method: "DELETE"
         })
         const parsedResponse = await apiResponse.json()
@@ -87,7 +79,8 @@ const VoyagerContainer = () => {
 
     // UPDATE: put
     const updateVoyager = async (idToUpdate, voyagerToUpdate) => {
-        const apiResponse = await fetch(`http://localhost:3001/voyagers/${idToUpdate}`,{
+
+        const apiResponse = await fetch(`https://voyager-back-end.herokuapp.com/${idToUpdate}`,{
             method: "PUT",
             body: JSON.stringify(voyagerToUpdate),
             headers: {
@@ -102,6 +95,18 @@ const VoyagerContainer = () => {
             setRequestError(parsedResponse.data)
      }
     }
+    // INDEX: GET function to setVoyagers
+    const getVoyagers = async () => {
+        try{
+            // const voyagers = await fetch("http://localhost:3001/voyagers/")
+            const voyagers = await fetch("https://voyager-back-end.herokuapp.com/")
+            const parsedVoyagers = await voyagers.json();
+            setVoyagers(parsedVoyagers.data)
+        }catch(err){
+            console.log(err)
+        }
+    }
+    useEffect(getVoyagers, [])
     return(
         <div className="voyager-container">
             <h2 className="title">VoyagerContainer</h2>
@@ -109,7 +114,7 @@ const VoyagerContainer = () => {
                 <NewVoyagerComponent setNewItemsServerError={setNewItemsServerError} createNewVoyager={createNewVoyager}></NewVoyagerComponent>
             </span>
             <span>
-              {voyagers.reverse().map((voyager)=>{
+              {voyagers.map((voyager)=>{
                     return <SingleItemComponent key={voyager._id} voyager={voyager} updateVoyager={updateVoyager} deleteVoyager={deleteVoyager}></SingleItemComponent>
                 })}
             </span>

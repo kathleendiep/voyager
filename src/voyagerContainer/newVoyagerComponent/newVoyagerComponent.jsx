@@ -35,7 +35,7 @@ const NewVoyagerComponent = (props) =>{
         e.preventDefault()
         let validSubmission = true;
         // front end validation 
-        if(newVoyager.productName.length < 2){
+        if(newVoyager.name.length < 2){
             setIsValidState({
                 valid: false, 
                 message: "Name needs to be longer"
@@ -84,7 +84,9 @@ const NewVoyagerComponent = (props) =>{
                         {/* name needs to be same as model schema */}
                         {/* data binding - backend and front end sync */}
                         Name: <input onChange={handleInputChange} type="text" name="name" value={newVoyager.name}/>
-                        Location: <input  onChange={handleInputChange} type="number" name="location" value={newVoyager.location}/>
+                        Location: <input  onChange={handleInputChange} type="text" name="location" value={newVoyager.location}/>
+                        Category <input onChange={handleInputChange} type="text" name="category" value={newVoyager.category}/>
+                        Description <input  onChange={handleInputChange} type="text" name="description" value={newVoyager.description}/>
                         <br></br>
                         <button type="submit">Submit</button>
                     </form>
