@@ -10,12 +10,15 @@ const NewVoyagerComponent = (props) =>{
         setShowing(!showing)
     }
     // 3. keep track and build object as user updates form 
-    // 0. set the keys to the object keys: name, location 
+    // 0. set the keys to the object keys: name, city
     const [newVoyager, setNewVoyager] = useState({
         name: "",
-        location: "",
+        city: "",
+        state: "",
+        address: "",
         category: "", 
         description: "",
+        link: "",
         img: ""
     })
     // 4. see if input is valid 
@@ -49,7 +52,8 @@ const NewVoyagerComponent = (props) =>{
             // 1. set the voyager
             setNewVoyager({
                 name: "",
-                location:  "",
+                city:  "",
+                state:  "",
                 address:  "",
                 category: "",
                 img: "",
@@ -84,9 +88,12 @@ const NewVoyagerComponent = (props) =>{
                         {/* name needs to be same as model schema */}
                         {/* data binding - backend and front end sync */}
                         Name: <input onChange={handleInputChange} type="text" name="name" value={newVoyager.name}/>
-                        Location: <input  onChange={handleInputChange} type="text" name="location" value={newVoyager.location}/>
-                        Category <input onChange={handleInputChange} type="text" name="category" value={newVoyager.category}/>
-                        Description <input  onChange={handleInputChange} type="text" name="description" value={newVoyager.description}/>
+                        City: <input  onChange={handleInputChange} type="text" name="city" value={newVoyager.city}/>
+                        State: <input  onChange={handleInputChange} type="text" name="state" value={newVoyager.state}/>
+                        Address: <input  onChange={handleInputChange} type="text" name="address" value={newVoyager.address}/>
+                        Category: <input onChange={handleInputChange} type="text" name="category" value={newVoyager.category}/>
+                        Description: <input  onChange={handleInputChange} type="text" name="description" value={newVoyager.description}/>
+                        Image Link: <input  onChange={handleInputChange} type="text" name="img" value={newVoyager.img}/>
                         <br></br>
                         <button type="submit">Submit</button>
                     </form>

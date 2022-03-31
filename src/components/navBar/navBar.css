@@ -1,0 +1,72 @@
+
+
+/************************
+Nav Bar 
+*************************/
+#container{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    column-gap: 80px;
+    
+}
+#hamburgerNav{
+    padding-top: 10px;
+    justify-content: flex-end;
+    margin-right: 10px;
+}
+.name-title {
+    font-size: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: black;
+    margin-right: 100px;
+  }
+/* #sideNav {
+  background: white;
+  width: 0;
+  height: 100vh;
+  overflow-x: hidden;
+  position: fixed;
+  z-index:1;
+  top: 0;
+  left: 0;
+  transition: .45s ease;
+} */
+#close {
+    outline: 0;
+    border: none;
+    background: none;
+    color: rgb(26, 26, 26);
+    padding: .70em;
+    font-size: 1.5em;
+    margin-bottom: .50em;
+    cursor: pointer;
+}
+div {
+    display: flex;
+    flex-direction: column;
+}
+div > a {
+    text-decoration: none;
+    color: rgb(115, 115, 115);
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: .80em 0 .80em 2em;
+    cursor: pointer;
+}
+
+
+#mainNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.open {
+      outline: 0;
+      background: none;
+      border: 0;
+      color: black;
+      font-size: 1.5em;
+      cursor: pointer;
+}

@@ -1,15 +1,14 @@
 import { useEffect, useState}  from 'react'
-import './voyagerContainer.css'; 
+// import any children 
 import SingleItemComponent from './singleItemComponent/singleItemComponent';
 import NewVoyagerComponent from './newVoyagerComponent/newVoyagerComponent';
-// import any children 
-
-
+import { Redirect } from "react-router-dom";
+import './voyagerContainer.css'
 // 0. make the function
-const VoyagerContainer = () => {
+const VoyagerContainer = (props) => {
     // {"name": "Farmhouse","location": "San Francisco", "category": "food", 'img':'https://img.cdn4dd.com/cdn-cgi/image/fit=cover,width=600,height=400,format=auto,quality=50/https://doordash-static.s3.amazonaws.com/media/store/header/109873.jpg', 'description': 'Thai Food with colorful spreads!'}
     const [voyagers, setVoyagers] = useState([]);
-     console.log(voyagers[0])
+    //  console.log(voyagers[0])
     const [newItemServerError, setNewItemsServerError] = useState("");
     const [requestError, setRequestError] = useState("")
     //  Create: POST
@@ -19,10 +18,8 @@ const VoyagerContainer = () => {
     const createNewVoyager = async (newVoyager) =>{
         console.log("Let's create this!");
         console.log(newVoyager)
-
         // POST method 
         // make sure to put localhost:3001 - to the backend 
-       
         // const apiResponse = await fetch("http://localhost:3001/voyagers/",{
            const apiResponse = await fetch("https://voyager-back-end.herokuapp.com/voyagers/",{
             method: "POST",
@@ -67,6 +64,7 @@ const VoyagerContainer = () => {
             const newVoyagers = voyagers.filter(voyager=> voyager._id !== idToDelete)
             // then set the newVoyger
             setVoyagers(newVoyagers)
+            return < Redirect to="/" />; 
         }else{
             // HANDLE AN UNSUCCESSFUL DELETE
         }
@@ -76,10 +74,8 @@ const VoyagerContainer = () => {
         // TODO: Handle front-end error 
     }
     }
-
     // UPDATE: put
     const updateVoyager = async (idToUpdate, voyagerToUpdate) => {
-
         const apiResponse = await fetch(`https://voyager-back-end.herokuapp.com/voyagers/${idToUpdate}`,{
             method: "PUT",
             body: JSON.stringify(voyagerToUpdate),
@@ -106,14 +102,18 @@ const VoyagerContainer = () => {
             console.log(err)
         }
     }
-    useEffect(getVoyagers, [])
+    // use this because uncaught typeerror 
+    useEffect(() => {
+        getVoyagers();
+      });
+    //   useEffect(getVoyagers, [])
     return(
         <div className="voyager-container">
-            <h2 className="title">VoyagerContainer</h2>
+            <h2 className="title">Check out some adventures!</h2>
             <span className="new-voyager-component">
                 <NewVoyagerComponent setNewItemsServerError={setNewItemsServerError} createNewVoyager={createNewVoyager}></NewVoyagerComponent>
             </span>
-            <span>
+            <span className="voyager-single-component">
               {voyagers.map((voyager)=>{
                     return <SingleItemComponent key={voyager._id} voyager={voyager} updateVoyager={updateVoyager} deleteVoyager={deleteVoyager}></SingleItemComponent>
                 })}

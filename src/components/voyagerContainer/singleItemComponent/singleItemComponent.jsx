@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import './singleItemComponent.css'
-
+import { Redirect } from "react-router-dom";
 const SingleItemComponent = (props) => {
     // only when condition is true that it will pop up 
     const [showing, setShowing] = useState(false)
@@ -13,7 +13,13 @@ const SingleItemComponent = (props) => {
     const [updateVoyager, setUpdateVoyager] = useState({
         // make sure this is refer to item array
         name: props.voyager.name, 
-        location: props.voyager.location,
+        city: props.voyager.city,
+        state: props.voyager.state,
+        address: props.voyager.state,
+        category: props.voyager.state,
+        img: props.voyager.img,
+        description: props.voyager.description,
+        link: props.voyager.link,
         // make sure that the item is assigned to a unique ID 
         _id: props.voyager._id
     })
@@ -36,16 +42,47 @@ const SingleItemComponent = (props) => {
        //from the parent updateItem - get the id and update the item 
        props.updateVoyager(props.voyager._id, updateVoyager)
        console.log("updatingItem!")
+       return < Redirect to="/" />; 
    }
 
     return(
+
+
+
+
          <div className="single-item-component">
-             <h3>items go here</h3>
-             <h4>{props.voyager.name}</h4>
-             <p><img className="image-voyager" src={props.voyager.img}></img></p>
+<div class="cards">
+  <div class="card">
+    <div class="img"><img className="image-voyager" src={props.voyager.img}></img></div>
+    <div class="card__body">
+      <div class="card__color-picker">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+                   {/* <h3>items go here</h3>
+             <h4></h4>
+
              <h4>{props.voyager.location}</h4>
              <h4>{props.voyager.category}</h4>
-             <h4>description: {props.voyager.description}</h4>
+             <h4>description: {props.voyager.description}</h4> */}
+
+      <h3 className="card-title">{props.voyager.name}</h3>
+    
+      <li className="card-category">{props.voyager.category}</li>
+      { props.voyager.city ? <p> {props.voyager.city}, {props.voyager.state}</p>: "___" } 
+    <li><b>description:</b> {props.voyager.description}</li> 
+
+
+    
+
+ 
+         
+  
+
+    </div>
+    <div class="card__footer">
+      <div class="card__buy">
              {/* ---------------- delete button ---------------- */}
              <button onClick={()=>{
                     // finds the id of item
@@ -69,7 +106,12 @@ const SingleItemComponent = (props) => {
                         {/* name needs to be same as model schema */}
                         {/* data binding - backend and front end sync */}
                         Name: <input onChange={handleInputChange} type="text" name="name" value={updateVoyager.name}/>
-                        Location: <input  onChange={handleInputChange} type="text" name="location" value={updateVoyager.location}/>
+                        City: <input onChange={handleInputChange} type="text" name="city" value={updateVoyager.city}/>
+                        State: <input  onChange={handleInputChange} type="text" name="state" value={updateVoyager.state}/>
+                        Address: <input  onChange={handleInputChange} type="text" name="address" value={updateVoyager.address}/>
+                        Category: <input onChange={handleInputChange} type="text" name="category" value={updateVoyager.category}/>
+                        Description: <input  onChange={handleInputChange} type="text" name="description" value={updateVoyager.description}/>
+                        Image Link: <input  onChange={handleInputChange} type="text" name="img" value={updateVoyager.img}/>
                         <br></br>
                         <button type="submit">Submit</button>
                     </form>
@@ -79,10 +121,11 @@ const SingleItemComponent = (props) => {
                 <button onClick={toggleShowing}> Edit Item</button>
                 }
                 </>
-
-
-
-            
+      </div>
+    </div>
+  </div>
+</div>
+ 
          </div>
     )
 }
