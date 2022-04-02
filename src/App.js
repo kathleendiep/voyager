@@ -8,8 +8,8 @@ import {
   Redirect,
 } from "react-router-dom";
 import About from './components/about';
-import HomePage from './components/homePage';
-import VoyagerContainer from './components/voyagerContainer/voyagerContainer';
+import HomePage from './components/homePage/homePage';
+import Adventures from './components/adventures';
 function App() {
   return (
     <div className="App">
@@ -27,6 +27,11 @@ function App() {
             props we passes the imported component*/}
             <Route path="/about" component={About} />
     
+          {/* This route is for about component 
+            with exact path "/about", in component 
+            props we passes the imported component*/}
+            <Route path="/adventures" component={Adventures} />
+
             {/* If any route mismatches the upper 
             route endpoints then, redirect triggers 
             and redirects app to home component with to="/" */}

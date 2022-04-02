@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import './singleItemComponent.css'
 import { Redirect } from "react-router-dom";
+
 const SingleItemComponent = (props) => {
     // only when condition is true that it will pop up 
     const [showing, setShowing] = useState(false)
@@ -44,90 +45,75 @@ const SingleItemComponent = (props) => {
        console.log("updatingItem!")
        return < Redirect to="/" />; 
    }
-
     return(
+        <div className="single-item-component">
+            {/* CARD ELEMENT */}
+            <div class="cards">
+                {/* IMAGE */}
+                <div class="card">
+                    <div class="img"><img className="image-voyager" src={props.voyager.img}></img></div>
+                    <div class="card__body">
+                    <div class="card__color-picker">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <h3 className="card-title">{props.voyager.name}</h3>
+                <li className="card-jobtitle">{props.voyager.category}</li>
+                {/* if has a city, print out, if not don't */}
+                { props.voyager.city ? <p> {props.voyager.city}, {props.voyager.state}</p>: "___" } 
+                <div class="card-content">
+                    <div class="card-subtitle">ABOUT</div>
+                    <p class="card-desc"> {props.voyager.description}</p>
+                </div>
 
 
-
-
-         <div className="single-item-component">
-<div class="cards">
-  <div class="card">
-    <div class="img"><img className="image-voyager" src={props.voyager.img}></img></div>
-    <div class="card__body">
-      <div class="card__color-picker">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-                   {/* <h3>items go here</h3>
-             <h4></h4>
-
-             <h4>{props.voyager.location}</h4>
-             <h4>{props.voyager.category}</h4>
-             <h4>description: {props.voyager.description}</h4> */}
-
-      <h3 className="card-title">{props.voyager.name}</h3>
-    
-      <li className="card-category">{props.voyager.category}</li>
-      { props.voyager.city ? <p> {props.voyager.city}, {props.voyager.state}</p>: "___" } 
-    <li><b>description:</b> {props.voyager.description}</li> 
-
-
-    
-
- 
-         
-  
-
-    </div>
-    <div class="card__footer">
-      <div class="card__buy">
-             {/* ---------------- delete button ---------------- */}
-             <button onClick={()=>{
-                    // finds the id of item
-                    props.deleteVoyager(props.voyager._id)
+                      {/* UPDATE AND DELETE BUTTONS */}
+            <div class="card-buttons">
+            {/* ---------------- delete button ---------------- */}
+                <button onClick={()=>{
+                // finds the id of item
+                props.deleteVoyager(props.voyager._id)
                 }}>Delete</button>
-             {/* ---------------- UPDATE --------------------- */} 
-            {/* if its showing = true, then show this create new form, else show CREATE NEW ITEM button*/}
-            {/* by default, showing will be false, unless button clicked, then it will show true!  */}
-            <>
+            {/* ---------------- UPDATE --------------------- */} 
+                {/* if its showing = true, then show this create new form, else show CREATE NEW ITEM button*/}
+                {/* by default, showing will be false, unless button clicked, then it will show true!  */}
+                <>
                 {
-                showing 
-                ? 
-                <div id="new-item-form">
+                    showing 
+                    ? 
+                    <div id="new-item-form">
                     {/* this will make the showing set from true to false and close out the div */}
                     <button onClick={toggleShowing}>X</button>
-                {/* create the onSubmit form */}
-                <form onSubmit={submitUpdateVoyager}>
+                    {/* create the onSubmit form */}
+                    <form onSubmit={submitUpdateVoyager}>
                     {/* if isValidState.valid is false - show an error  */}
-                        { isValidState.valid ? null :<p className="form-error">{isValidState.message}</p> }
-                        {/* onChange listens to whats in here based on function - put this on both*/}
-                        {/* name needs to be same as model schema */}
-                        {/* data binding - backend and front end sync */}
-                        Name: <input onChange={handleInputChange} type="text" name="name" value={updateVoyager.name}/>
-                        City: <input onChange={handleInputChange} type="text" name="city" value={updateVoyager.city}/>
-                        State: <input  onChange={handleInputChange} type="text" name="state" value={updateVoyager.state}/>
-                        Address: <input  onChange={handleInputChange} type="text" name="address" value={updateVoyager.address}/>
-                        Category: <input onChange={handleInputChange} type="text" name="category" value={updateVoyager.category}/>
-                        Description: <input  onChange={handleInputChange} type="text" name="description" value={updateVoyager.description}/>
-                        Image Link: <input  onChange={handleInputChange} type="text" name="img" value={updateVoyager.img}/>
-                        <br></br>
-                        <button type="submit">Submit</button>
+                    { isValidState.valid ? null :<p className="form-error">{isValidState.message}</p> }
+                    {/* onChange listens to whats in here based on function - put this on both*/}
+                    {/* name needs to be same as model schema */}
+                    {/* data binding - backend and front end sync */}
+                    Name: <input onChange={handleInputChange} type="text" name="name" value={updateVoyager.name}/>
+                    City: <input onChange={handleInputChange} type="text" name="city" value={updateVoyager.city}/>
+                    State: <input  onChange={handleInputChange} type="text" name="state" value={updateVoyager.state}/>
+                    Address: <input  onChange={handleInputChange} type="text" name="address" value={updateVoyager.address}/>
+                    Category: <input onChange={handleInputChange} type="text" name="category" value={updateVoyager.category}/>
+                    Description: <input  onChange={handleInputChange} type="text" name="description" value={updateVoyager.description}/>
+                    Image Link: <input  onChange={handleInputChange} type="text" name="img" value={updateVoyager.img}/>
+                    <br></br>
+                    <button type="submit">Submit</button>
                     </form>
-                </div>
-                :
-                //* refer to toggleShowing function to set showing to TRUE to show new item form 
-                <button onClick={toggleShowing}> Edit Item</button>
+                    </div>
+                    :
+                    //* refer to toggleShowing function to set showing to TRUE to show new item form 
+                    <button onClick={toggleShowing}> Edit Item</button>
                 }
                 </>
-      </div>
-    </div>
-  </div>
-</div>
- 
-         </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        </div>
     )
 }
 
-export default SingleItemComponent
+    export default SingleItemComponent

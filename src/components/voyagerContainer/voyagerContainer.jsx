@@ -2,6 +2,7 @@ import { useEffect, useState}  from 'react'
 // import any children 
 import SingleItemComponent from './singleItemComponent/singleItemComponent';
 import NewVoyagerComponent from './newVoyagerComponent/newVoyagerComponent';
+import SearchBar from '../searchBar/searchBar';
 import { Redirect } from "react-router-dom";
 import './voyagerContainer.css'
 // 0. make the function
@@ -15,6 +16,8 @@ const VoyagerContainer = (props) => {
     // newVoyager = defined in the child
     // but this createNewVoyager needs to be defined in the PARENT STATE 
     // newVoyager it is set in the child 
+
+
     const createNewVoyager = async (newVoyager) =>{
         console.log("Let's create this!");
         console.log(newVoyager)
@@ -67,7 +70,7 @@ const VoyagerContainer = (props) => {
             return < Redirect to="/" />; 
         }else{
             // HANDLE AN UNSUCCESSFUL DELETE
-        }
+        } 
     }catch(err){
         console.log(err)
         setRequestError(err.message)
@@ -109,15 +112,32 @@ const VoyagerContainer = (props) => {
     //   useEffect(getVoyagers, [])
     return(
         <div className="voyager-container">
-            <h2 className="title">Check out some adventures!</h2>
+
+            <SearchBar voyagers={voyagers}></SearchBar>
+            <h2 className="title">Add a Voyager</h2>
             <span className="new-voyager-component">
                 <NewVoyagerComponent setNewItemsServerError={setNewItemsServerError} createNewVoyager={createNewVoyager}></NewVoyagerComponent>
             </span>
+            <h2 className="title">Check out some adventures!</h2>
+           
+
             <span className="voyager-single-component">
-              {voyagers.map((voyager)=>{
-                    return <SingleItemComponent key={voyager._id} voyager={voyager} updateVoyager={updateVoyager} deleteVoyager={deleteVoyager}></SingleItemComponent>
+                {voyagers.map((voyager)=> {
+                    // if it starts with searchInput 
+                    if(voyager.city.toLowerCase() === "honolulu") {
+                        return <SingleItemComponent key={voyager._id} voyager={voyager} updateVoyager={updateVoyager} deleteVoyager={deleteVoyager}></SingleItemComponent>
+                    }
                 })}
-            </span>
+            </span> 
+            <span className="voyager-single-component">
+                {voyagers.map((voyager)=> {
+                    // if it starts with searchInput 
+                    if(voyager.city.toLowerCase() === "menlo park") {
+                        return <SingleItemComponent key={voyager._id} voyager={voyager} updateVoyager={updateVoyager} deleteVoyager={deleteVoyager}></SingleItemComponent>
+                    }
+                })}
+            </span> 
+
         </div>
     )
 }

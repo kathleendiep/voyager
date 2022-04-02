@@ -42,7 +42,7 @@ const NewVoyagerComponent = (props) =>{
             setIsValidState({
                 valid: false, 
                 message: "Name needs to be longer"
-            })
+             })
             validSubmission = false;
         }
         // if it is a validsubmission we can create and set new item 
@@ -70,6 +70,7 @@ const NewVoyagerComponent = (props) =>{
         }
     }
     return(
+
         <>
             {/* Create a Tenary - only show when needed - if showing = true, then it will show form */}
             {
@@ -100,7 +101,7 @@ const NewVoyagerComponent = (props) =>{
                 </div>
                 :
                 //* refer to toggleShowing function to set showing to TRUE to show new item form 
-                <button onClick={toggleShowing}>Create New Item</button>
+                <button onClick={toggleShowing} className="button">Let's add one!</button>
             }
         </>
     )

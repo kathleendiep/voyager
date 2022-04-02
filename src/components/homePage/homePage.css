@@ -1,13 +1,24 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
 
-section {
+section{
     position: relative;
-    padding: 10em;
+    padding: 6em;
     background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%);
     color: black;
     text-align: center;
     margin-bottom: 100px;
-  }   
+  }
+  @media(min-width: 500px){
+    section{
+      position: relative;
+      padding: 10em;
+      background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%);
+      color: black;
+      text-align: center;
+      margin-bottom: 100px;
+    }
+  }
+
   section h2 {
     margin: 0;
     padding: 0;
