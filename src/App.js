@@ -7,9 +7,11 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import About from './components/about';
 import HomePage from './components/homePage/homePage';
 import Adventures from './components/adventures';
+
 function App() {
   return (
     <div className="App">

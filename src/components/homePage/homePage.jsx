@@ -2,10 +2,11 @@ import React from 'react'
 import { useState } from 'react'
 import VoyagerContainer from '../voyagerContainer/voyagerContainer';
 import NavBar from '../navBar/navBar';
-
-
+import Footer from '../../footer/footer';
 import { Link } from "react-router-dom";
 import './homePage.css'
+import 'animate.css';
+
 const HomePage = () => {
   const [inputText, setInputText] = useState("");
   let inputHandler = (e) => {
@@ -18,17 +19,17 @@ const HomePage = () => {
   
           <div className="nav-bar">
             <NavBar></NavBar> 
-              <section class="col-2 ss-style-triangles">
+              <section class="animate__animated animate__bounce">
                 <div class="column text">
-                <h2>Voyager</h2>
-                <p>A place to plan your next adventure! </p>
+                <h2 class="animate__animated animate__bounce">Voyager</h2>
+                <p>A place to plan your next `adventure! </p>
                 </div>
-                <button className="button"><Link to="/about" className='text-link'>About</Link></button>
+                <button className="button text-link"><Link to="/about">About</Link></button>
               </section>
             {/* assign the input to inputText */}
             <VoyagerContainer input={inputText}></VoyagerContainer>
+            <Footer></Footer>
           </div>
-
     )
 }
 

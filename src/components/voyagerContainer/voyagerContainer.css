@@ -1,6 +1,5 @@
 .title{
     display: inline;
-    border: 2px solid black;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -12,7 +11,6 @@
 
 
 .voyager-container{
-    border: 5px solid green;
     display: flex;
     flex-direction: column;
 }
@@ -22,7 +20,7 @@ h1{
 }
 
 .voyager-single-component{
-    border: 5px solid purple;
+    /* border: 5px solid purple; */
     display: grid;
     justify-content: space-evenly;
     width: 100%;
@@ -37,15 +35,3 @@ h1{
 li {
     display: inline;
 }
-
-/* if there is a show route */
-
-/* https://codepen.io/TurkAysenur/pen/gORaboY */
-
-
-
-/* for the product grid: https://codepen.io/virgilpana/pen/RNYQwB
-
-https://codepen.io/Eruedraith/pen/xwQPVg
-https://codepen.io/steveeeie/pen/NVWMEM
-*/

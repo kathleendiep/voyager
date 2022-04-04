@@ -1,7 +1,14 @@
 import { useState } from 'react'
 import './newVoyagerComponent.css'
+import Modal from 'react-bootstrap/Modal'
+import Form from 'react-bootstrap/Form'
+import Button from  'react-bootstrap/Button'
+import { Redirect } from 'react-router-dom'
 
 const NewVoyagerComponent = (props) =>{
+    const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
     // set as false, so it won't show as form 
     const [showing, setShowing] = useState(false)
     // 1. function that setShowing function as TRUE! = !true when clicked on 
@@ -67,20 +74,23 @@ const NewVoyagerComponent = (props) =>{
             })
             // set showing to false to end it 
             setShowing(false)
+            return < Redirect to="/" />; 
         }
     }
     return(
-
+        
         <>
-            {/* Create a Tenary - only show when needed - if showing = true, then it will show form */}
-            {
-                showing
-                ?
-                <div id="new-item-form">
-                    {/* this will make the showing set from true to false and close out the div */}
-                    <button onClick={toggleShowing}>X</button>
+        <Button variant="primary" onClick={handleShow} className="custom-btn">
+            Create
+        </Button>
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Create a new Voyager!</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+      {/* this will make the showing set from true to false and close out the div */}
                     {/* create the onSubmit form */}
-                    <form onSubmit={submitNewVoyager}>
+                    <Form onSubmit={submitNewVoyager}>
                         {/* if isValidState.valid return null, else - show an error  */}
                         { isValidState.valid ? null :<p className="form-error">{isValidState.message}</p> }
                         {/* if there is a server error then show there is an error */}
@@ -88,23 +98,44 @@ const NewVoyagerComponent = (props) =>{
                         {/* onChange listens to whats in here based on function - put this on both*/}
                         {/* name needs to be same as model schema */}
                         {/* data binding - backend and front end sync */}
-                        Name: <input onChange={handleInputChange} type="text" name="name" value={newVoyager.name}/>
-                        City: <input  onChange={handleInputChange} type="text" name="city" value={newVoyager.city}/>
-                        State: <input  onChange={handleInputChange} type="text" name="state" value={newVoyager.state}/>
-                        Address: <input  onChange={handleInputChange} type="text" name="address" value={newVoyager.address}/>
-                        Category: <input onChange={handleInputChange} type="text" name="category" value={newVoyager.category}/>
-                        Description: <input  onChange={handleInputChange} type="text" name="description" value={newVoyager.description}/>
-                        Image Link: <input  onChange={handleInputChange} type="text" name="img" value={newVoyager.img}/>
-                        <br></br>
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
-                :
-                //* refer to toggleShowing function to set showing to TRUE to show new item form 
-                <button onClick={toggleShowing} className="button">Let's add one!</button>
-            }
-        </>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Name:</Form.Label>
+                            <Form.Control onChange={handleInputChange} type="text" name="name" value={newVoyager.name} />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>City:</Form.Label>
+                            <Form.Control onChange={handleInputChange} type="text" name="city" value={newVoyager.city} />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>State:</Form.Label>
+                            <Form.Control onChange={handleInputChange} type="text" name="state" value={newVoyager.state} />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Address:</Form.Label>
+                            <Form.Control onChange={handleInputChange} type="text" name="address" value={newVoyager.address}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label> Category:</Form.Label>
+                            <Form.Control onChange={handleInputChange} type="text" name="category" value={newVoyager.category}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Description:</Form.Label>
+                            <Form.Control  onChange={handleInputChange} type="text" name="description" value={newVoyager.description}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Image Link:</Form.Label>
+                            <Form.Control onChange={handleInputChange} type="text" name="img" value={newVoyager.img}/>
+                        </Form.Group>
+                        <Button type="submit" onSubmit={submitNewVoyager}>
+                            Submit New!
+                        </Button>
+                        </Form>
+            </Modal.Body>  
+        </Modal>
+      </>
     )
 }
 
 export default NewVoyagerComponent 
+
+

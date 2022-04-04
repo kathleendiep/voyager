@@ -45,7 +45,7 @@ section{
 /* ---- put this in react file ---- */
 /*<button className="button"><Link to="/about" className='text-link'>About</Link></button>
  */
-.text-link {
+.text-link a{
   color: inherit;
   text-decoration: inherit;
 }

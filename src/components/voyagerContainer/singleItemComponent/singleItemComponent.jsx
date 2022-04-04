@@ -66,8 +66,6 @@ const SingleItemComponent = (props) => {
                     <div class="card-subtitle">ABOUT</div>
                     <p class="card-desc"> {props.voyager.description}</p>
                 </div>
-
-
                       {/* UPDATE AND DELETE BUTTONS */}
             <div class="card-buttons">
             {/* ---------------- delete button ---------------- */}

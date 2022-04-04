@@ -5,6 +5,7 @@ import NewVoyagerComponent from './newVoyagerComponent/newVoyagerComponent';
 import SearchBar from '../searchBar/searchBar';
 import { Redirect } from "react-router-dom";
 import './voyagerContainer.css'
+
 // 0. make the function
 const VoyagerContainer = (props) => {
     // {"name": "Farmhouse","location": "San Francisco", "category": "food", 'img':'https://img.cdn4dd.com/cdn-cgi/image/fit=cover,width=600,height=400,format=auto,quality=50/https://doordash-static.s3.amazonaws.com/media/store/header/109873.jpg', 'description': 'Thai Food with colorful spreads!'}
@@ -120,7 +121,7 @@ const VoyagerContainer = (props) => {
             </span>
             <h2 className="title">Check out some adventures!</h2>
            
-
+            <h3>Honolulu, Hawaii</h3>
             <span className="voyager-single-component">
                 {voyagers.map((voyager)=> {
                     // if it starts with searchInput 
@@ -129,10 +130,11 @@ const VoyagerContainer = (props) => {
                     }
                 })}
             </span> 
+            <h3>San Francisco</h3> 
             <span className="voyager-single-component">
                 {voyagers.map((voyager)=> {
                     // if it starts with searchInput 
-                    if(voyager.city.toLowerCase() === "menlo park") {
+                    if(voyager.city.toLowerCase() === "san francisco") {
                         return <SingleItemComponent key={voyager._id} voyager={voyager} updateVoyager={updateVoyager} deleteVoyager={deleteVoyager}></SingleItemComponent>
                     }
                 })}
