@@ -75,21 +75,24 @@ h1 {
 }
   .image-voyager{
     height: 220px;
-    width: 200px;
+    width: 100%;
     background-size: cover;
-    border: 2px black solid;
     background-position: 50% 70%; 
   }
+
+  /* to center an image */
+  /* margin-left: auto;
+  margin-right: auto; */
+
  @media(min-width: 660px){
   .image-voyager{
     height: 220px;
-    width: 300px;
+    width: 100%;
+    object-fit: cover;
     display: flex;
-    margin-left: auto;
-    margin-right: auto;
     align-items: center;
     background-size: cover;
-    border: 2px black solid;
+
     background-position: 50% 70%; 
   }
   .card {

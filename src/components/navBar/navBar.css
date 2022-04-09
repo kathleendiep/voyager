@@ -8,8 +8,16 @@ Nav Bar
     justify-content: space-between;
     flex-direction: row;
     column-gap: 80px;
-    
 }
+@media(min-width: 500px){
+  #container{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    column-gap: 80px;
+}
+}
+
 #hamburgerNav{
     padding-top: 10px;
     justify-content: flex-end;
@@ -66,8 +74,6 @@ div > a {
     padding: .80em 0 .80em 2em;
     cursor: pointer;
 }
-
-
 #mainNav {
     display: flex;
     justify-content: space-between;
