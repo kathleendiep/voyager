@@ -15,6 +15,7 @@ import Adventures from './components/adventures';
 function App() {
   return (
     <div className="App">
+      <h1>hello</h1>
       <>
         {/* This is the alias of BrowserRouter i.e. Router */}
         <Router>

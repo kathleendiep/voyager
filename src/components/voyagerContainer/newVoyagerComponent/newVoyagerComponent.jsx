@@ -78,12 +78,11 @@ const NewVoyagerComponent = (props) =>{
         }
     }
     return(
-        
-        <>
+       <>
         <Button variant="primary" onClick={handleShow} className="custom-btn">
             Create
         </Button>
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} onHide={handleClose} className="modal-body">
           <Modal.Header closeButton>
             <Modal.Title>Create a new Voyager!</Modal.Title>
           </Modal.Header>

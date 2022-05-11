@@ -17,8 +17,6 @@ const VoyagerContainer = (props) => {
     // newVoyager = defined in the child
     // but this createNewVoyager needs to be defined in the PARENT STATE 
     // newVoyager it is set in the child 
-
-
     const createNewVoyager = async (newVoyager) =>{
         console.log("Let's create this!");
         console.log(newVoyager)
@@ -113,11 +111,10 @@ const VoyagerContainer = (props) => {
     //   useEffect(getVoyagers, [])
     return(
         <div className="voyager-container">
-
             <SearchBar voyagers={voyagers}></SearchBar>
             <h2 className="title">Add a Voyager</h2>
             <span className="new-voyager-component">
-                <NewVoyagerComponent setNewItemsServerError={setNewItemsServerError} createNewVoyager={createNewVoyager}></NewVoyagerComponent>
+                <NewVoyagerComponent newItemServerError={newItemServerError} setNewItemsServerError={setNewItemsServerError} createNewVoyager={createNewVoyager}></NewVoyagerComponent>
             </span>
             <h2 className="title">Check out some adventures!</h2>
            
