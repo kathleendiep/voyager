@@ -26,6 +26,10 @@ const HomePage = () => {
                 </div>
                 <button className="button text-link"><Link to="/about">About</Link></button>
               </section>
+              <div className="col-lg-6 banner-main-img">
+                        {/* Main Image */}
+                            <img src="/img/snacks-world-banner.png" alt="Image" />
+              </div>
             {/* assign the input to inputText */}
             <VoyagerContainer input={inputText}></VoyagerContainer>
             <Footer></Footer>
