@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import './singleItemComponent.css'
+import './singleItemComponent.scss'
 import { Redirect } from "react-router-dom";
 
 const SingleItemComponent = (props) => {
