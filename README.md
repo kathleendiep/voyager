@@ -1,7 +1,7 @@
 # VOYAGER - front-end
 Travel app voyager where you can save attractions, hikes, restaurants in your local city or dream destination. 
 ### Deployed App
-[check it out here](https://voyager-back-end.herokuapp.com/voyagers)
+[check it out here](https://voyager-front-end.herokuapp.com)
 
 ### TECHNOLOGIES USED:
 - REACT - front end  
