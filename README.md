@@ -5,7 +5,7 @@ Travel app voyager where you can save attractions, hikes, restaurants in your lo
 
 ### TECHNOLOGIES USED:
 - REACT - front end  
-MERN stack: Node.js, Mongoose, Express and React.
+MERN stack: Node.js, MongoDB, Express and React.
 ## GOAL
 ### User Stories
 - user will be able to add places based on city and state cool places based on categories (hiking, food, attractions, + more)
